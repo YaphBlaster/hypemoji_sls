@@ -1,0 +1,8 @@
+{
+  "name": "claimsfasttrack_backend",
+  "version": "1.0.0",
+  "description": "Backend written for hypemoji application",
+  "scripts": {
+    "deploy": "sls deploy -v --aws-profile hypemoji"
+  }
+}
