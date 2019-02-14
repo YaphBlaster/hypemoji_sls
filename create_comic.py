@@ -7,12 +7,11 @@ import boto3
 import botocore
 import os
 
-
 def create_comic(event, context):
     list_im = []
     list_text = []
 
-    for value in event:
+    for value in event['body']:
         list_im.append(BytesIO(requests.get(value['url']).content))
         list_text.append(value['text'])
 
@@ -73,8 +72,6 @@ def create_comic(event, context):
     LAMBDA_IMGUR_CLIENT_ID = os.environ['IMGUR_CLIENT_ID']
     LAMBDA_IMGUR_CLIENT_SECRET = os.environ['IMGUR_CLIENT_SECRET']
     client = ImgurClient(LAMBDA_IMGUR_CLIENT_ID, LAMBDA_IMGUR_CLIENT_SECRET)
-
-    print("Lambda imgur id", LAMBDA_IMGUR_CLIENT_ID)
 
     uploaded_image = client.upload_from_path("/tmp/verticalImage.png")
 
