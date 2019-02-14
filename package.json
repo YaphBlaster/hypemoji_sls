@@ -1,8 +1,32 @@
 {
-  "name": "claimsfasttrack_backend",
+  "name": "hypemoji_sls",
   "version": "1.0.0",
-  "description": "Backend written for hypemoji application",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "deploy": "sls deploy -v --aws-profile hypemoji"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "sls deploy -v --aws-profile hypemoji",
+    "kill": "sls remove -v --aws-profile hypemoji",
+    "freeze": "pip freeze > requirements.txt && cat requirements.txt",
+    "createEnv": "virtualenv --no-site-packages --distribute .venv  --python=python3 && source .venv/bin/activate && pip install -r requirements.txt",
+    "pippy": " pip install -r requirements.txt",
+    "getComics": "serverless invoke -f getComics --aws-profile hypemoji ",
+    "createComic": "serverless invoke -f createComic --path createComicTest.json --log --aws-profile hypemoji"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YaphBlaster/hypemoji_sls.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YaphBlaster/hypemoji_sls/issues"
+  },
+  "homepage": "https://github.com/YaphBlaster/hypemoji_sls#readme",
+  "dependencies": {
+    "serverless-python-requirements": "^4.3.0"
+  },
+  "config": {
+    "source": "source"
   }
 }

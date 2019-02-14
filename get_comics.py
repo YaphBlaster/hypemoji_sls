@@ -1,7 +1,7 @@
 import json
+import requests
 
-
-def hello(event, context):
+def get_comics(event, context):
     try:
         body = {
             "message": "Go Serverless v1.0! Your function executed successfully!",
@@ -10,7 +10,7 @@ def hello(event, context):
 
         response = {
             "statusCode": 200,
-            "body": "hello"
+            "body": requests.get('https://api.bitmoji.com/content/templates').json()
         }
 
     except Exception as e:
@@ -20,3 +20,7 @@ def hello(event, context):
         }
 
     return response
+
+
+if __name__ == "__main__":
+    print(get_comics('', ''))
