@@ -16,8 +16,14 @@ var/
 .installed.cfg
 *.egg
 
+# Virtual Environment
+.venv 
+
 # vscode settings
 .vscode
 
 # Serverless directories
 .serverless
+
+# Node Modules
+node_modules

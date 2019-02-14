@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: hypemojiTest # NOTE: update this with your service name
+service: hypemoji # NOTE: update this with your service name
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -20,7 +20,7 @@ service: hypemojiTest # NOTE: update this with your service name
 provider:
   name: aws
   runtime: python3.7
-  versionFunctions: false
+  versionFunctions: false # We don't need versioning because we are using Git
   memorySize: 128
   region: us-west-2
 
@@ -49,21 +49,32 @@ provider:
 #    variable1: value1
 
 # you can add packaging information here
-#package:
-#  include:
-#    - include-me.py
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.py
-#    - exclude-me-dir/**
+package:
+  #  include:
+  #    - include-me.py
+  #    - include-me-dir/**
+  exclude:
+    - .venv/** # leave out virtual environment to reduce size of zip
+    - .vscode/** # leave out vscode settings to reduce size of zip
 
 functions:
-  hello:
-    handler: handler.hello
+  getComics:
+    handler: get_comics.get_comics
     events:
       - http:
-          path: echo/hello
+          path: getComics
           method: get
+          cors: true # Needed to avoid error 502
+          integration: LAMBDA # Needed to avoid error 502
+  createComic:
+    handler: create_comic.create_comic
+    events:
+      - http:
+          path: createComic
+          method: post
+          cors: true # Needed to avoid error 502
+          integration: LAMBDA # Needed to avoid error 502
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -108,3 +119,11 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    # slim: true
+    dockerizePip: non-linux
