@@ -126,4 +126,5 @@ plugins:
 custom:
   pythonRequirements:
     # slim: true
-    dockerizePip: non-linux
+    zip: true
+    dockerizePip: non-linux # NOTE: You will need docker in order for this line to work

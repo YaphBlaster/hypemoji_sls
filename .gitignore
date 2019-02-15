@@ -27,3 +27,7 @@ var/
 
 # Node Modules
 node_modules
+
+# Ignore zip requirements
+unzip_requirements.py
+.requirements.zip

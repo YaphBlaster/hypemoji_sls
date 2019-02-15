@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "sls deploy -v --aws-profile hypemoji",
+    "deploy": "npm run freeze && sls deploy -v --aws-profile hypemoji",
     "kill": "sls remove -v --aws-profile hypemoji",
     "freeze": "pip freeze > requirements.txt && cat requirements.txt",
     "createEnv": "virtualenv --no-site-packages --distribute .venv  --python=python3 && source .venv/bin/activate && pip install -r requirements.txt",

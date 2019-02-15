@@ -1,3 +1,8 @@
+try:
+  import unzip_requirements
+except ImportError:
+  pass
+
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import requests
