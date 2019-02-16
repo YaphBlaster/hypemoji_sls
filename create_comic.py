@@ -37,9 +37,12 @@ def create_comic(event, context):
 
     total_width = sum(widths)
     max_height = max(heights)
+    total_height = sum(heights)
+    max_width = max(widths)
+
     new_horizontal_image = Image.new('RGB', (total_width, max_height))
 
-    new_vertical_image = Image.new('RGB', (max_height, total_width))
+    new_vertical_image = Image.new('RGB', (max_width, total_height))
 
     x_offset = 0
     y_offset = 0
@@ -66,7 +69,7 @@ def create_comic(event, context):
         # new_horizontal_image.paste(image, (x_offset, 0))
         new_vertical_image.paste(image, (0, y_offset))
         x_offset += image.size[0]
-        y_offset += image.size[0]
+        y_offset += image.size[1]
         index += 1
 
     # new_horizontal_image.save('/tmp/horizontalImage.png',
