@@ -1,10 +1,11 @@
 try:
-  import unzip_requirements
+    import unzip_requirements
 except ImportError:
-  pass
-  
+    pass
+
 import json
 import requests
+
 
 def get_comics(event, context):
     try:
