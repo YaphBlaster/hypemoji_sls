@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "npm run freeze && sls deploy -v --aws-profile hypemoji",
-    "kill": "sls remove -v --aws-profile hypemoji",
-    "freeze": "pip freeze > requirements.txt && cat requirements.txt",
+    "deploy": "npm run freeze && sls deploy -v",
+    "kill": "sls remove -v",
+    "freeze": "pip freeze > requirements.txt",
     "createEnv": "virtualenv --no-site-packages --distribute .venv  --python=python3 && source .venv/bin/activate && pip install -r requirements.txt",
     "pippy": " pip install -r requirements.txt",
-    "getComics": "serverless invoke -f getComics --aws-profile hypemoji ",
-    "createComic": "serverless invoke -f createComic --path createComicTest.json --log --aws-profile hypemoji"
+    "getComics": "serverless invoke -f getComics",
+    "createComic": "serverless invoke -f createComic --path createComicTest.json --log",
+    "venvWin": ".venv\\Scripts\\activate",
+    "createVenvWin": "virtualenv --no-site-packages --distribute -p python .venv"
   },
   "repository": {
     "type": "git",

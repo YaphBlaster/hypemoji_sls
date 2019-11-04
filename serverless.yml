@@ -9,6 +9,9 @@
 # For full config options, check the docs:
 #    docs.serverless.com
 #
+# to create a virtual environment (windows):              virtualenv --no-site-packages --distribute -p python .venv
+# to load a virtual environment (windows - gitBash):      source .venv/Scripts/activate
+# to load a virtual environment (windows - PowerShell):   .venv\Scripts\activate
 # Happy Coding!
 
 service: hypemoji # NOTE: update this with your service name
@@ -56,6 +59,7 @@ package:
   exclude:
     - .venv/** # leave out virtual environment to reduce size of zip
     - .vscode/** # leave out vscode settings to reduce size of zip
+    - tmp/** # leave out tmp folder to reduce size of zip
 
 functions:
   getComics:
