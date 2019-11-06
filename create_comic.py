@@ -47,7 +47,6 @@ def create_comic(event, context):
         widths, heights = zip(*(i.size for i in images))
         gap_in_pixels = 5 if (len(images) > 1) else 0
         total_height = sum(heights) + (gap_in_pixels * (len(images) -1))
-        print(total_height)
         max_width = max(widths)
         min_width = min(widths)
 
