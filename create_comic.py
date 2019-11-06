@@ -45,12 +45,11 @@ def create_comic(event, context):
             font = ImageFont.truetype("arial.ttf", 21)
  
         widths, heights = zip(*(i.size for i in images))
-        gap_in_pixels = 5
-        total_height = sum(heights) + (gap_in_pixels * len(images))
+        gap_in_pixels = 5 if (len(images) > 1) else 0
+        total_height = sum(heights) + (gap_in_pixels * (len(images) -1))
+        print(total_height)
         max_width = max(widths)
         min_width = min(widths)
-
-        print(min_width)
 
         new_vertical_image = Image.new('RGB', (min_width, total_height))
         border_color = "black"
@@ -77,9 +76,9 @@ def create_comic(event, context):
                     newText, font=font, fill=(255, 255, 255, 255))
 
             new_vertical_image.paste(image, (0, y_offset))
-            y_offset += image.size[1] + gap_in_pixels
+            y_offset += image.size[1] + (gap_in_pixels if len(images) -1 > index else 0)
         
-        new_vertical_image.save('/tmp/verticalImage.png',
+        new_vertical_image.save('/tmp/verticalImage.png' if is_remote else 'tmp/verticalImage.png',
                                 format='PNG', subsampling=0, quality=100)
 
         if(is_remote):
