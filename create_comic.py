@@ -36,20 +36,23 @@ def create_comic(event, context):
                     'tmp/Hack-BoldOblique.ttf', '/tmp/font.ttf')
             except botocore.exceptions.ClientError as e:
                 print("Error: ", e)
-            font = ImageFont.truetype('/tmp/font.ttf', 22)
+            font = ImageFont.truetype('/tmp/font.ttf', 21)
             
             LAMBDA_IMGUR_CLIENT_ID = os.environ['IMGUR_CLIENT_ID']
             LAMBDA_IMGUR_CLIENT_SECRET = os.environ['IMGUR_CLIENT_SECRET']
             client = ImgurClient(LAMBDA_IMGUR_CLIENT_ID, LAMBDA_IMGUR_CLIENT_SECRET)
         else:
-            font = ImageFont.truetype("arial.ttf", 22)
+            font = ImageFont.truetype("arial.ttf", 21)
  
         widths, heights = zip(*(i.size for i in images))
         gap_in_pixels = 5
         total_height = sum(heights) + (gap_in_pixels * len(images))
         max_width = max(widths)
+        min_width = min(widths)
 
-        new_vertical_image = Image.new('RGB', (max_width, total_height))
+        print(min_width)
+
+        new_vertical_image = Image.new('RGB', (min_width, total_height))
         border_color = "black"
 
         y_offset = 0;
