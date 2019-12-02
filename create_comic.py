@@ -50,7 +50,7 @@ def create_comic(event, context):
         max_width = max(widths)
         min_width = min(widths)
 
-        new_vertical_image = Image.new('RGB', (min_width, total_height))
+        new_vertical_image = Image.new('RGB', (min_width, total_height), color=(255,255,255))
         border_color = "black"
 
         y_offset = 0;
